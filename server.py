@@ -45,7 +45,7 @@ SERVER.bind(addr)
 
 if __name__ == '__main__':
     SERVER.listen(5)
-    print("Attempt to connect...")
+    print("En attente de connexion...")
     ACCEPT_THREAD = Thread(target=accept_inc_connections)
     ACCEPT_THREAD.start()
     ACCEPT_THREAD.join()
