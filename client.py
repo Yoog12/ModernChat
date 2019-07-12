@@ -8,13 +8,13 @@ def receive():
         try:
             msg = client_socket.recv(BUFSIZ).decode("utf8")
             msg_list.insert(tkinter.END, msg)
-        except OSError:  # Possibly client has left the chat.
+        except OSError:
             break
 
 
-def send(event=None):  # event is passed by binders.
+def send(event=None):
     msg = my_msg.get()
-    my_msg.set("")  # Clears input field.
+    my_msg.set("")
     client_socket.send(bytes(msg, "utf8"))
     if msg == "!quit":
         client_socket.close()
