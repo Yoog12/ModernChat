@@ -1,1 +1,4 @@
 # ModernChat
+
+## Installation
+
