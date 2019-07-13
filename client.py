@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+#
+#
+#   CLIENT
+#
+#
+
 from socket import AF_INET, socket, SOCK_STREAM
 from threading import Thread
 import tkinter
@@ -46,8 +52,8 @@ send_button.pack()
 
 top.protocol("WM_DELETE_WINDOW", on_closing)
 
-HOST = input("Choisir une IP: ")
-PORT = int(input("Choisir un PORT: "))
+HOST = 'localhost'
+PORT = 33000
 
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
