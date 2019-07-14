@@ -30,7 +30,7 @@ def handle_client(client):
         if msg != bytes("!quit", "utf8"):
             broadcast(msg, name+": ")
         else:
-            client.send(bytes(":!quit", "utf8"))
+            client.send(bytes("!quit", "utf8"))
             client.close()
             del clients[client]
             broadcast(bytes("%s a quitter le chat." % name, "utf8"))
