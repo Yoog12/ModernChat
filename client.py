@@ -31,7 +31,6 @@ def on_closing(event=None):
     client_socket.close()
     top.quit()
 
-
 top = tkinter.Tk()
 top.title("ModernChat")
 
@@ -48,8 +47,6 @@ messages_frame.pack()
 entry_field = tkinter.Entry(top, textvariable=my_msg)
 entry_field.bind("<Return>", send)
 entry_field.pack()
-send_button = tkinter.Button(top, text="Send", command=send)
-send_button.pack()
 
 top.protocol("WM_DELETE_WINDOW", on_closing)
 
