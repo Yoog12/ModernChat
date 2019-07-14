@@ -12,23 +12,25 @@ def accept_inc_connections():
     while True:
         client, client_address = SERVER.accept()
         print("%s:%s est connecté." % client_address)
-        client.send(bytes("Bienvenue dans ModernChat !" + "Entrez votre pseudo et tapez entrer", "utf8"))
+        client.send(bytes("Bienvenue dans ModernChat !", "utf8"))
+        client.send(bytes("Entrez votre pseudo et tapez entrer", "utf8"))
         addresses[client] = client_address
         Thread(target=handle_client, args=(client,)).start()
 
 def handle_client(client):
     name = client.recv(buff_size).decode()
-    welcome = 'Welcome %sSi vous souhaitez quitter, taper !quit pour partir.' % name
+    welcome = 'Bienvenue %s' % name
     client.send(bytes(welcome, "utf8"))
+    client.send(bytes("Si vous souhaitez quitter tapez !quit", "utf8"))
     msg = "%s a rejoint le chat !" % name
     broadcast(bytes(msg, "utf8"))
     clients[client] = name
     while True:
         msg = client.recv(buff_size)
-        if msg != bytes("{quit}", "utf8"):
+        if msg != bytes("!quit", "utf8"):
             broadcast(msg, name+": ")
         else:
-            client.send(bytes("{quit}", "utf8"))
+            client.send(bytes(":!quit", "utf8"))
             client.close()
             del clients[client]
             broadcast(bytes("%s a quitter le chat." % name, "utf8"))

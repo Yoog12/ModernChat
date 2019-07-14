@@ -28,8 +28,9 @@ def send(event=None):
 
 
 def on_closing(event=None):
-    my_msg.set("{quit}")
-    send()
+    client_socket.close()
+    top.quit()
+
 
 top = tkinter.Tk()
 top.title("ModernChat")
@@ -52,7 +53,7 @@ send_button.pack()
 
 top.protocol("WM_DELETE_WINDOW", on_closing)
 
-HOST = 'localhost'
+HOST = input("Entrez l'adresse IP : ")
 PORT = 33000
 
 BUFSIZ = 1024
